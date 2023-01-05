@@ -119,10 +119,10 @@ $pdf->AddPage();
 		while($row = mysqli_fetch_assoc($data3))
 		{
 			$pdf->cell('17','10', $row['bookingID'],'1','0','C');
-			$pdf->cell('30','10', $row['cust_Name'],'1','0','C');
-			$pdf->cell('37','10', $row['cust_phone'],'1','0','C');
-			$pdf->cell('40','10', $row['cust_Email'],'1','0','C');
-			$pdf->cell('45','10', $row['property_Name'],'1','1','C');
+			$pdf->cell('30','10', $row['name'],'1','0','C');
+			$pdf->cell('37','10', $row['phone'],'1','0','C');
+			$pdf->cell('40','10', $row['email'],'1','0','C');
+			$pdf->cell('45','10', $row['PropertyName'],'1','1','C');
 			//$pdf->cell('22','10', $row['booking_Date'],'1','1','C');
 		}
 		$pdf->cell('20','10','','0','1','');
