@@ -333,10 +333,10 @@
 
                         <tr>
                           <td><?php echo $row['bookingID']; ?></td>
-                          <td><?php echo $row['cust_Name']; ?></td>
-                          <td><?php echo $row['cust_phone']; ?></td>
-                          <td><?php echo $row['cust_Email']; ?></td>
-                          <td><?php echo $row['property_Name']; ?></td>
+                          <td><?php echo $row['name']; ?></td>
+                          <td><?php echo $row['phone']; ?></td>
+                          <td><?php echo $row['email']; ?></td>
+                          <td><?php echo $row['PropertyName']; ?></td>
                           <!--<td><?php //echo $row['booking_Date']; ?></td>-->
                         </tr>
 
