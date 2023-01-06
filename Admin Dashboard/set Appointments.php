@@ -10,8 +10,6 @@
     
     $query = "INSERT INTO appointment VALUES ('', '$name', '$phoneNo', '$email', '$PropertyName', '$date');";
 
-    //$query = "INSERT INTO booking VALUES ('','$name', '$phone', '$email', '$PropertyName')";
-
 
     mysqli_query($conn,$query);
     echo
