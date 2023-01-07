@@ -1,6 +1,6 @@
 <?php 
   require_once 'connection_db.php';
-  $sql= "select * from booking";
+  $sql= "select * from inquiry";
   $data = mysqli_query($conn,$sql);
 
 ?>
@@ -10,27 +10,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GBJ Realty | View Booking</title>
+  <title>GBJ Realty | Inbox</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome Icons -->
+  <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
 </head>
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="hold-transition dark-mode sidebar-mini">
   <div class="wrapper">
-
-    <!-- Preloader -->
-    <div class="preloader flex-column justify-content-center align-items-center">
-      <img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-    </div>
-
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-dark">
+    <nav class="main-header navbar navbar-expand navbar-dark navbar-light">
       <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li class="nav-item">
@@ -41,9 +35,6 @@
         </li>
         <li class="nav-item d-none d-sm-inline-block">
           <a href="#" class="nav-link">Contact</a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="../index.php" class="nav-link">Log out</a>
         </li>
       </ul>
 
@@ -169,6 +160,7 @@
       </ul>
     </nav>
     <!-- /.navbar -->
+
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
@@ -205,7 +197,7 @@
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
-   with font-awesome or any other icon font library -->
+          with font-awesome or any other icon font library -->
             <li class="nav-item menu-open">
               <ul class="nav nav-treeview">
                 <li class="nav-item">
@@ -216,8 +208,9 @@
                 </li>
               </ul>
             </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
+
+            <li class="nav-item menu-open">
+              <a href="#" class="nav-link active">
                 <i class="nav-icon far fa-envelope"></i>
                 <p>
                   Mailbox
@@ -226,15 +219,16 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="inbox.php" class="nav-link">
+                  <a href="inbox.php" class="nav-link active">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Inquiry Inbox</p>
                   </a>
                 </li>
               </ul>
             </li>
+
             <li class="nav-item">
-              <a href="view booking.php" class="nav-link active">
+              <a href="view booking.php" class="nav-link">
                 <i class="nav-icon far fa-image"></i>
                 <p>
                   View Booking
@@ -274,129 +268,259 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
-      <div class="content-header">
+      <section class="content-header">
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Booking Details</h1>
-            </div><!-- /.col -->
+              <h1>Inbox</h1>
+            </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">View Booking</li>
+                <li class="breadcrumb-item active">Inbox</li>
               </ol>
-            </div><!-- /.col -->
-          </div><!-- /.row -->
+            </div>
+          </div>
         </div><!-- /.container-fluid -->
-      </div>
-      <!-- /.content-header -->
+      </section>
+
       <!-- Main content -->
       <section class="content">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-12">
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title">Booking Table</h3>
+        <div class="row">
+          <div class="col-md-3">
+            <a href="compose.html" class="btn btn-primary btn-block mb-3">Compose</a>
 
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Folders</h3>
 
-                  <div class="card-tools">
-                    <div class="input-group input-group-sm" style="width: 150px;">
-                      <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body p-0">
+                <ul class="nav nav-pills flex-column">
+                  <li class="nav-item active">
+                    <a href="#" class="nav-link">
+                      <i class="fas fa-inbox"></i> Inbox
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="far fa-envelope"></i> Sent
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="far fa-file-alt"></i> Drafts
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="fas fa-filter"></i> Junk
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="far fa-trash-alt"></i> Trash
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Labels</h3>
 
-                      <div class="input-group-append">
-                        <button type="submit" class="btn btn-default">
-                          <i class="fas fa-search"></i>
-                        </button>
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="card-body p-0">
+                <ul class="nav nav-pills flex-column">
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="far fa-circle text-danger"></i>
+                      Important
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="far fa-circle text-warning"></i> Promotions
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="#" class="nav-link">
+                      <i class="far fa-circle text-primary"></i>
+                      Social
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-9">
+            <div class="card card-primary card-outline">
+              <div class="card-header">
+                <h3 class="card-title">Inbox</h3>
+
+                <div class="card-tools">
+                  <div class="input-group input-group-sm">
+                    <input type="text" class="form-control" placeholder="Search Mail">
+                    <div class="input-group-append">
+                      <div class="btn btn-primary">
+                        <i class="fas fa-search"></i>
                       </div>
                     </div>
                   </div>
                 </div>
-                <!-- /.card-header -->
-                <div class="card-body table-responsive p-0" style="height: 460px;">
-                  <table class="table table-head-fixed text-nowrap">
-                    <thead>
-                      <tr>
-                        <th>Booking ID</th>
-                        <th>Customer Name</th>
-                        <th>Customer Phone Number</th>
-                        <th>Customer Email</th>
-                        <th>Property Type</th>
-                        <!--<th>Booking Date</th>-->
-                      </tr>
-                    </thead>
-                    <tbody>
-                      
-                    </tbody><?php
+                <!-- /.card-tools -->
+              </div>
+<!---------------->
+              <table class="table table-head-fixed text-nowrap">
+                <thead>
+                  <tr>
+                    <th>Inquiry ID</th>
+                    <th>Customer Name</th>
+                    <th>Customer Phone Number</th>
+                    <th>Customer Email</th>
+                    <th>Subject</th>
+                    <th>Message</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <?php
                       while($row = mysqli_fetch_assoc($data)){
                         ?>
 
                         <tr>
-                          <td><?php echo $row['bookingID']; ?></td>
+                          <td><?php echo $row['inquiryID']; ?></td>
                           <td><?php echo $row['name']; ?></td>
                           <td><?php echo $row['phone']; ?></td>
                           <td><?php echo $row['email']; ?></td>
-                          <td><?php echo $row['PropertyName']; ?></td>
-                          <!--<td><?php //echo $row['booking_Date']; ?></td>-->
+                          <td><?php echo $row['subject']; ?></td>
+                          <td><?php echo $row['message']; ?></td>
                         </tr>
 
-                      <?php
+                        <?php
                       }
                       ?>
-                  </table>
+                </tbody>
+              </table>
+              
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <div class="mailbox-controls">
+                  <!-- Check all button -->
+                  <button type="button" class="btn btn-default btn-sm checkbox-toggle">
+                    <i class="far fa-square"></i>
+                  </button>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-default btn-sm">
+                      <i class="far fa-trash-alt"></i>
+                    </button>
+                    <button type="button" class="btn btn-default btn-sm">
+                      <i class="fas fa-reply"></i>
+                    </button>
+                    <button type="button" class="btn btn-default btn-sm">
+                      <i class="fas fa-share"></i>
+                    </button>
+                  </div>
+                  <!-- /.btn-group -->
+                  <button type="button" class="btn btn-default btn-sm">
+                    <i class="fas fa-sync-alt"></i>
+                  </button>
+                  <div class="float-right">
+                    1-50/200
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-default btn-sm">
+                        <i class="fas fa-chevron-left"></i>
+                      </button>
+                      <button type="button" class="btn btn-default btn-sm">
+                        <i class="fas fa-chevron-right"></i>
+                      </button>
+                    </div>
+                    <!-- /.btn-group -->
+                  </div>
+                  <!-- /.float-right -->
                 </div>
-                <form action="booking_pdf.php" method="POST">
-                    <button type="submit" name="btn_pdf1" class="btn btn-success">Generate PDF</button>
-                  </form>
-                <!-- /.card-body -->
+                <div class="table-responsive mailbox-messages">
+                  <table class="table table-hover table-striped">
+                  </table>
+                  <!-- /.table -->
+                </div>
+                <!-- /.mail-box-messages -->
               </div>
-              <!-- /.card -->
-            </div>
-          </div>
-                <!-- /.footer -->
+              <!-- /.card-body -->
+                </div>
               </div>
-              <!-- /.card -->
-              <!-- /.content-wrapper -->
-              <!-- Control Sidebar -->
-              <aside class="control-sidebar control-sidebar-dark">
-                <!-- Control sidebar content goes here -->
-              </aside>
-              <!-- /.control-sidebar -->
             </div>
+            <!-- /.card -->
           </div>
-          <!-- /.row -->
-        </div><!--/. container-fluid -->
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
       </section>
       <!-- /.content -->
     </div>
-
-
+    <!-- /.content-wrapper -->
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
   </div>
-  <!-- ./wrapper -->
-  <!-- REQUIRED SCRIPTS -->
-  <!-- jQuery -->
-  <script src="plugins/jquery/jquery.min.js"></script>
-  <!-- Bootstrap -->
-  <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- overlayScrollbars -->
-  <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-  <!-- AdminLTE App -->
-  <script src="dist/js/adminlte.js"></script>
+<!-- ./wrapper -->
 
-  <!-- PAGE PLUGINS -->
-  <!-- jQuery Mapael -->
-  <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-  <script src="plugins/raphael/raphael.min.js"></script>
-  <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
-  <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<!-- Page specific script -->
+<script>
+  $(function () {
+    //Enable check and uncheck all functionality
+    $('.checkbox-toggle').click(function () {
+      var clicks = $(this).data('clicks')
+      if (clicks) {
+        //Uncheck all checkboxes
+        $('.mailbox-messages input[type=\'checkbox\']').prop('checked', false)
+        $('.checkbox-toggle .far.fa-check-square').removeClass('fa-check-square').addClass('fa-square')
+      } else {
+        //Check all checkboxes
+        $('.mailbox-messages input[type=\'checkbox\']').prop('checked', true)
+        $('.checkbox-toggle .far.fa-square').removeClass('fa-square').addClass('fa-check-square')
+      }
+      $(this).data('clicks', !clicks)
+    })
 
+    //Handle starring for font awesome
+    $('.mailbox-star').click(function (e) {
+      e.preventDefault()
+      //detect type
+      var $this = $(this).find('a > i')
+      var fa    = $this.hasClass('fa')
 
-  <!-- ChartJS -->
-  <script src="plugins/chart.js/Chart.min.js"></script>
-
-  <!-- AdminLTE for demo purposes -->
-  <script src="dist/js/demo.js"></script>
-  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <script src="dist/js/pages/dashboard2.js"></script>
+      //Switch states
+      if (fa) {
+        $this.toggleClass('fa-star')
+        $this.toggleClass('fa-star-o')
+      }
+    })
+  })
+</script>
 </body>
 </html>

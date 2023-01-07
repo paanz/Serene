@@ -226,7 +226,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="inbox.html" class="nav-link">
+                                    <a href="inbox.php" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Inquiry Inbox</p>
                                     </a>

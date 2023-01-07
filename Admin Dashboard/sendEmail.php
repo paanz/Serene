@@ -3,10 +3,10 @@
 
     if (isset($_POST['name']) && isset($_POST['email'])) {
         $name = $_POST['name'];
+        $phoneNo= $_POST['phoneNo'];
         $email = $_POST['email'];
-        $subject = $_POST['subject'];
-        $phone= $_POST['phone'];
-        $message = $_POST['message'];
+        $PropertyName = $_POST['PropertyName'];     
+        $date = $_POST['date'];
 
         require_once "PHPMailer/PHPMailer.php";
         require_once "PHPMailer/SMTP.php";
@@ -18,18 +18,27 @@
         $mail->isSMTP();
         $mail->Host = "smtp.gmail.com";
         $mail->SMTPAuth = true;
-        $mail->Username = "gbjrealty21@gmail.com"; //enter you email address
-        $mail->Password = 'gtqehwqpksbiyicz'; //enter you email password
+        $mail->Username = "daniallotester123@gmail.com"; //enter you email address
+        $mail->Password = 'yzkhojmbwqxcifxw'; //enter you email password
         $mail->Port = 465;
         $mail->SMTPSecure = "ssl";
 
         //Email Settings
         $mail->isHTML(true);
         $mail->setFrom($email, $name);
-        $mail->addAddress("gbjrealty21@gmail.com"); //enter you email address
+		$mail->addAddress($email); //enter you email address
 
-        $mail->Subject = ("Message Received (Inquiry Form)");
-        $mail->Body = "<h3> Name : $name <br>Email: $email  <br>Phone: $phone <br><br>Subject:$subject <br>Message : $message</h3>";
+        $mail->Subject = ("Appointment Information");
+        $mail->Body = "<h3> 
+            Date: $date<br>
+            To,<br>
+            $name.<br>
+            <br>
+            Dear Mr.$name,<br>
+            This an email to set you on an appointment for the property that you have booked which is a $PropertyName in Serene@Sakura. The date of the appointment will be on $date. Any inquiry please contact us at 1300 1231 0231 0212.
+            Sincerely,<br>
+            GBJ Realty<br>
+            </h3>";
 
 
         if ($mail->send()) {

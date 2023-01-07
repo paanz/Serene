@@ -8,7 +8,7 @@
     $PropertyName = $_POST['PropertyName'];
     $date = $_POST['date'];
     
-    $query = "INSERT INTO appointment VALUES ('', '$name', '$phoneNo', '$email', '$PropertyName', '$date');";
+    $query = "INSERT INTO appointment VALUES ('','$name', '$phoneNo', '$email', '$PropertyName', '$date');";
 
 
     mysqli_query($conn,$query);
@@ -52,7 +52,7 @@
       <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><ik class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
           <a href="GBJ Realty Admin Dashboard.php" class="nav-link">Home</a>
@@ -245,7 +245,7 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="inbox.html" class="nav-link">
+                  <a href="inbox.php" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Inquiry Inbox</p>
                   </a>
@@ -325,15 +325,15 @@
                 <form action="" method="POST">
                   <div class="card-body">
                     <div class="form-group">
-                      <label for="name">Name</label>
+                      <label for="name">Customer Name</label>
                       <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name">
                     </div>
                     <div class="form-group">
-                      <label for="name">Phone Number</label>
-                      <input type="number" class="form-control" name="phoneNo" id="phonenumber" placeholder="Enter Phone Number">
+                      <label for="name">Customer Phone Number</label>
+                      <input type="number" class="form-control" name="phoneNo" id="phoneNo" placeholder="Enter Phone Number">
                     </div>
                     <div class="form-group">
-                      <label for="name">Email</label>
+                      <label for="name">Customer Email</label>
                       <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email">
                     </div>
 
@@ -364,10 +364,52 @@
                   </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                      <button type="submit" name="submit" class="btn btn-primary">Set Appointment</button>
+                      <button type="submit" name="submit" onclick="sendEmail()" class="btn btn-primary">Set Appointment</button>
                     </div>
                 </form>
                 <!-- /.form group -->
+
+                <!--====== MAILER PART START ======-->    
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>                   
+	<script type="text/javascript">
+        function sendEmail() {
+            var name = $("#name");
+            var phoneNo = $("#phoneNo");
+            var email = $("#email");
+            var PropertyName = $("#PropertyName");
+            var date = $("#date");
+
+            if (isNotEmpty(name) && isNotEmpty(phoneNo) && isNotEmpty(email) && isNotEmpty(PropertyName)  && isNotEmpty(date)) {
+                $.ajax({
+                   url: 'sendEmail.php',
+                   method: 'POST',
+                   dataType: 'json',
+                   data: {
+                       name: name.val(),
+                       phoneNo: phoneNo.val(),
+                       email: email.val(),
+                       PropertyName: PropertyName.val(),
+                       date: date.val()
+                   }, success: function (response) {
+                        $('#myForm')[0].reset();
+                        alert("Message Sent Successfully.");
+                   }
+                });
+            }
+        }
+
+        function isNotEmpty(caller) {
+            if (caller.val() == "") {
+                caller.css('border', '1px solid red');
+                return false;
+            } else
+                caller.css('border', '');
+
+            return true;
+        }
+    </script>
+    <!--====== MAILER PART ENDS ======--> 
+
               </div>
               <!-- /.card -->
             </div>
