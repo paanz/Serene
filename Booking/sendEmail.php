@@ -17,15 +17,15 @@
         $mail->isSMTP();
         $mail->Host = "smtp.gmail.com";
         $mail->SMTPAuth = true;
-        $mail->Username = "gbjrealty21@gmail.com"; //enter you email address
-        $mail->Password = 'gtqehwqpksbiyicz'; //enter you email password
+        $mail->Username = "daniallotester123@gmail.com"; //enter you email address
+        $mail->Password = 'yzkhojmbwqxcifxw'; //enter you email password
         $mail->Port = 465;
         $mail->SMTPSecure = "ssl";
 
         //Email Settings
         $mail->isHTML(true);
         $mail->setFrom($email, $name);
-        $mail->addAddress("gbjrealty21@gmail.com"); //enter you email address
+        $mail->addAddress("daniallotester123@gmail.com"); //enter you email address
 		$mail->addAddress($email); //enter you email address
 
         $mail->Subject = ("Booking Received (Booking Form)");
