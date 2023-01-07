@@ -1,3 +1,21 @@
+<?php
+    require 'connection_inquiry.php';
+                
+    if(isset($_POST['submit'])){
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $phone = $_POST['phone'];
+        $subject = $_POST['subject'];
+        $message = $_POST['message'];
+                
+        $query = "INSERT INTO inquiry VALUES ('','$name', '$email', '$phone', '$subject','$message')";
+        mysqli_query($conn,$query);
+                
+            include'2-thank-you.html';
+        }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -589,42 +607,42 @@
             
                 <div class="col-lg-8">
                     <div class="contact-form">
-                        <form id="contact-form">
+                        <form id="contact-form" onsubmit="return validation()"  action="" method="post">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="single-form form-group">
-                                        <input type="text" id="name" placeholder="Your Name" data-error="Name is required." required="required">
+                                        <input type="text" id="name" name="name" placeholder="Your Name" data-error="Name is required." required="required">
                                         <div class="help-block with-errors"></div>
                                     </div> <!-- single form -->
                                 </div>
                                 <div class="col-md-6">
                                     <div class="single-form form-group">
-                                        <input type="email" id="email" placeholder="Your Email" data-error="Valid email is required." required="required">
+                                        <input type="email" id="email" name="email" placeholder="Your Email" data-error="Valid email is required." required="required">
                                         <div class="help-block with-errors"></div>
                                     </div> <!-- single form -->
                                 </div>
                                 <div class="col-md-6">
                                     <div class="single-form form-group">
-                                        <input type="text" id="subject" placeholder="Subject" data-error="Subject is required." required="required">
+                                        <input type="text" id="subject" name="subject" placeholder="Subject" data-error="Subject is required." required="required">
                                         <div class="help-block with-errors"></div>
                                     </div> <!-- single form -->
                                 </div>
                                 <div class="col-md-6">
                                     <div class="single-form form-group">
-                                        <input type="text" id="phone" placeholder="Phone" data-error="Phone is required." required="required">
+                                        <input type="text" id="phone" name="phone" placeholder="Phone" data-error="Phone is required." required="required">
                                         <div class="help-block with-errors"></div>
                                     </div> <!-- single form -->
                                 </div>
                                 <div class="col-md-12">
                                     <div class="single-form form-group">
-                                        <textarea placeholder="Your Message" id="message" rows="5" data-error="Please,leave us a message." required="required"></textarea>
+                                        <textarea placeholder="Your Message"  name="message" rows="5" data-error="Please,leave us a message." required="required"></textarea>
                                         <div class="help-block with-errors"></div>
                                     </div> <!-- single form -->
                                 </div>
                                 <p class="form-message"></p>
                                 <div class="col-md-12">
                                     <div class="single-form form-group text-center">
-                                        <button type="submit" onclick="sendEmail()" value="Send An Email" class="main-btn">send message</button>
+                                        <button type="submit" name="submit" onclick="sendEmail()" value="Send An Email" class="main-btn">Send Message</button>
                                     </div> <!-- single form -->
 
     <!--====== MAILER PART START ======-->    
